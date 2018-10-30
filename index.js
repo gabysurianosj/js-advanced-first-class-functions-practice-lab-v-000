@@ -15,3 +15,30 @@ function logDriversByHometown(drivers, hometown) {
   }
   drivers.forEach(logNameFilter);
 }
+
+function driversByRevenue(drivers) {
+  const driversCopy = drivers.slice();
+   const sortRevenues = function(driver1, driver2) {
+    return driver1.revenue - driver2.revenue;
+  }
+   return driversCopy.sort(sortRevenues);
+}
+
+ function driversByName(drivers) {
+  const driversCopy = drivers.slice();
+   const comparator = function(a, b) {
+    return a['name'].localeCompare(b['name']);
+  }
+   return driversCopy.sort(comparator);
+}
+
+ function totalRevenue(drivers) {
+  const reduceDriverRevenues = function(agg, el, i, arr) {
+    return agg + el.revenue;
+  }
+   return drivers.reduce(reduceDriverRevenues, 0);
+}
+
+ function averageRevenue(drivers) {
+  return totalRevenue(drivers) / drivers.length;
+}
